@@ -1,0 +1,53 @@
+@model JORDAN_2T.ApplicationCore.ViewModels.CategoryVM;
+@using JORDAN_2T.ApplicationCore.Utilities
+
+@{
+    ViewBag.Title = "Store Administration";
+}
+<div class="container">
+    <section class="mt-5">
+        <header>
+            <h1 class="heading-line mb-5">Manage Category</h1>
+            <div class="row">
+                <div class="col-6">
+                    <a asp-controller="Category" asp-action="Create" class="btn btn-success mb-3 right">Create New</a>
+                </div>
+            </div>
+        </header>
+    </section>
+    <section>
+        <div class="card">
+            <div class="card-block">
+                <table class="table">
+                    <thead>
+                        <tr class="row m-2">
+                            <th class="d-inline-block col-md-2 col-2">Id</th>
+                            <th class="d-inline-block col-md-6 col-6 hidden-md-down">Name</th>
+                            <th class="d-inline-block col-md-2 col-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model.category)
+                        {
+                            <tr class="row m-2">
+                                <td class="d-inline-block col-md-2 col-4">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id">@category.Id</a>
+                                </td>
+                                <td class="d-inline-block col-md-6 col-6 hidden-md-down">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id">@category.Name</a>
+                                </td>
+                                <td class="d-inline-block col-md-2 col-4">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning btn-small">Edit</a>
+                                    @if(User.IsInRole(WebsiteRole.Admin))
+                                    {
+                                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger btn-small">Delete</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

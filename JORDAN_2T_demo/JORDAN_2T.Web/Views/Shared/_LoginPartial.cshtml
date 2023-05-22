@@ -1,0 +1,69 @@
+@using Microsoft.AspNetCore.Identity
+@using JORDAN_2T.ApplicationCore.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+            <span class="ml-2 d-none d-lg-inline-block"> <span class="text-dark"><i class="fal fa-user"></i>
+                @UserManager.GetUserName(User)!
+                </span> <i data-feather="chevron-down" class="svg-icon"></i></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+            
+            <a id="manage" class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <i data-feather="user"
+                    class="svg-icon mr-2 ml-1"></i>
+                My Profile</a>
+            <a class="dropdown-item" asp-area="Customer" asp-controller="OrderHistory" asp-action="Index"><i data-feather="credit-card"
+                    class="svg-icon mr-2 ml-1"></i>
+                Order History</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript:void(0)">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <i data-feather="power"
+                    class="svg-icon mr-2 ml-1"></i><button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
+        </form>
+                </a>
+            <div class="dropdown-divider"></div>
+        </div>
+    </li>
+    <li class="nav-item">
+       <div id="fb-root" class=" fb_reset">
+        <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+            <div></div>
+        </div>
+        
+     
+        <div class=" fb_iframe_widget fb_invisible_flow" fb-iframe-plugin-query="app_id=&amp;attribution=biz_inbox&amp;container_width=1528&amp;current_url=https%3A%2F%2Fwww.jordan1.vn%2F&amp;is_loaded_by_facade=true&amp;local_state=%7B%22v%22%3A1%2C%22path%22%3A2%2C%22chatState%22%3A1%2C%22visibility%22%3A%22hidden%22%2C%22showUpgradePrompt%22%3A%22not_shown%22%2C%22greetingVisibility%22%3A%22hidden%22%2C%22shouldShowLoginPage%22%3Afalse%7D&amp;locale=vi_VN&amp;log_id=e75d9245-b05e-4bda-a1ac-ca20bb962140&amp;page_id=106709828178316&amp;request_time=1680609450293&amp;sdk=joey"><span style="vertical-align: bottom; width: 1000px; height: 0px;"><iframe name="f3264e0dcace978" width="1000px" height="1000px" data-testid="dialog_iframe" title="" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v12.0/plugins/customerchat.php?app_id=&amp;attribution=biz_inbox&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df131def183b7cc%26domain%3Dwww.jordan1.vn%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.jordan1.vn%252Ff2aefee9875f3%26relation%3Dparent.parent&amp;container_width=1528&amp;current_url=https%3A%2F%2Fwww.jordan1.vn%2F&amp;is_loaded_by_facade=true&amp;local_state=%7B%22v%22%3A1%2C%22path%22%3A2%2C%22chatState%22%3A1%2C%22visibility%22%3A%22hidden%22%2C%22showUpgradePrompt%22%3A%22not_shown%22%2C%22greetingVisibility%22%3A%22hidden%22%2C%22shouldShowLoginPage%22%3Afalse%7D&amp;locale=vi_VN&amp;log_id=e75d9245-b05e-4bda-a1ac-ca20bb962140&amp;page_id=106709828178316&amp;request_time=1680609450293&amp;sdk=joey" style="padding: 0px; position: fixed; z-index: 2147483646; border-radius: 16px; top: auto; background: none; width: 399px; bottom: 84px; max-height: 0px; right: 16px; visibility: visible; height: 373px;" class=""></iframe></span></div>
+        <div class="fb_dialog  fb_dialog_advanced" alignment="right" desktop_bottom_spacing="24">
+            <div class="fb_dialog_content"><iframe name="blank_f3264e0dcace978" width="60px" tabindex="-1" data-testid="bubble_iframe" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v12.0/plugins/customer_chat/bubble"
+                    style="background: none; border-radius: 60px; bottom: 24px; box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px 0px; display: block; height: 60px; margin: 0px 12px; overflow: visible; padding: 0px; position: fixed; right: 12px; top: auto; width: 60px; z-index: 2147483644;"></iframe>
+                <iframe name="availabilityStatus_f3264e0dcace978" tabindex="-1" data-testid="availabilityStatus_iframe" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v12.0/plugins/customer_chat/bubble"
+                    style="border-radius: 50%; bottom: 21.5px; height: 15px; position: fixed; right: 24px; width: 15px; z-index: 2147483646;"></iframe><iframe name="unread_f3264e0dcace978" tabindex="-1" data-testid="unread_iframe" frameborder="0"
+                    allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v12.0/plugins/customer_chat/bubble" style="background: none; border-radius: 4pt; bottom: 68px; height: 24px; position: fixed; right: 22px; width: 20px; z-index: 2147483645;"></iframe>
+                <iframe name="greeting_f3264e0dcace978" tabindex="-1" data-testid="greeting_iframe" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v12.0/plugins/customer_chat/bubble"
+                    style="animation: 3s ease-out 0s 1 normal none running slideInFromBottomDelay; background: none; border-radius: 16px; bottom: 96px; height: 72px; margin-right: 12px; max-height: 0px; padding: 0px; position: fixed; right: 6px; top: auto; width: 247px; z-index: 2147483646; min-height: 0px;"></iframe>
+            </div>
+        </div>
+    </div>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+       <a class="header-icon-user" asp-area="Identity" asp-page="/Account/Login" title="Manage">
+                                    <i class="fal fa-user"></i>
+                                </a>
+    </li>
+   
+}
+</ul>
+
+
+

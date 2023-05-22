@@ -1,0 +1,64 @@
+﻿@model JORDAN_2T.ApplicationCore.ViewModels.Admin.AdminMovieListVM;
+@using JORDAN_2T.ApplicationCore.Utilities
+
+@{
+    ViewBag.Title = "Store Administration";
+}
+<div class="container">
+    <section class="mt-5">
+        <header>
+            <h1 class="heading-line mb-5">Manage Product</h1>
+            <div class="row">
+                <div class="col-6 d-flex">
+                    @using (Html.BeginForm("Index", "Movies", FormMethod.Post, new { @class = "form-inline" }))
+                    {
+                        @Html.DropDownListFor(vm => vm.Status, Model.StatusList, new { @class = "form-select mb-3", onchange = @"form.submit();" })
+                    }
+                </div>
+                <div class="col-6">
+                    <a asp-controller="Movies" asp-action="Create" class="btn btn-success mb-3 right">Create New</a>
+                </div>
+            </div>
+        </header>
+    </section>
+    <section>
+        <div class="card">
+            <div class="card-block">
+                <table class="table">
+                    <thead>
+                        <tr class="row m-2">
+                            <th class="d-inline-block col-md-2 col-2">Number</th>
+                            <th class="d-inline-block col-md-6 col-6 hidden-md-down">Name</th>
+                            <th class="d-inline-block col-md-2 col-2">Price</th>
+                            <th class="d-inline-block col-md-2 col-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var movie in Model.Movies)
+                        {
+                            <tr class="row m-2">
+                                <td class="d-inline-block col-md-2 col-4">
+                                    <a asp-controller="Movies" asp-action="Edit" asp-route-id="@movie.Id">@movie.Number</a>
+                                </td>
+                                <td class="d-inline-block col-md-6 col-6 hidden-md-down">
+                                    <a asp-controller="Movies" asp-action="Edit" asp-route-id="@movie.Id">@movie.Name</a>
+                                </td>
+                                <td class="d-inline-block col-md-2 col-4">@movie.FormattedPrice</td>
+                                <td class="d-inline-block col-md-2 col-4">
+                                    <a asp-controller="Movies" asp-action="Edit" asp-route-id="@movie.Id" class="btn btn-warning btn-small">Edit</a>
+                                    
+                                    @if (User.IsInRole(WebsiteRole.Admin))
+                                    {
+                                        <a asp-controller="Movies" asp-action="Delete" asp-route-id="@movie.Id" class="btn btn-danger btn-small">Delete</a>
+
+                                    }
+                                </td>
+                            </tr>
+                            
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

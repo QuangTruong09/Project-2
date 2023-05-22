@@ -1,0 +1,229 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="layout-account">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 offset-md-3  wrapbox-content-account">
+                    <div id="customer-login">
+                        <div id="login" class="userbox">
+                            <div class="accounttype">
+                                <h1 class="text-center account-title">Đăng nhập</h1>
+            
+                            </div>
+                            <form id="account" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Email" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="checkbox mb-3">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Đăng Nhập</button>
+                </div>
+                <div class="text-center">
+                    
+                        <a id="forgot-password" asp-page="./ForgotPassword">Quên Mật khẩu ?</a>
+                    
+                        <br> Hoặc
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng ký</a>
+                    
+                    @* <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p> *@
+                </div>
+                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+@* <div class="layout-account">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-md-6 offset-md-3  wrapbox-content-account">
+                <div id="customer-login">
+                    <div id="login" class="userbox">
+                        <div class="accounttype">
+                            <h1 class="text-center account-title">Đăng nhập</h1>
+
+                        </div>
+                        <form accept-charset="UTF-8" action="/account/login" id="customer_login" method="post">
+                            <input name="form_type" type="hidden" value="customer_login">
+                            <input name="utf8" type="hidden" value="✓">
+
+
+                            <div class="clearfix large_form">
+                                <label for="customer_email" class="icon-field"><i
+                                        class="icon-login icon-envelope "></i></label>
+                                <input required="" type="email" value="" name="customer[email]" id="customer_email"
+                                    placeholder="Email" class="text">
+                            </div>
+
+                            <div class="clearfix large_form  large_form-mr10">
+                                <label for="customer_password" class="icon-field"><i
+                                        class="icon-login icon-shield"></i></label>
+                                <input required="" type="password" value="" name="customer[password]"
+                                    id="customer_password" placeholder="Mật khẩu" class="text" size="16">
+                            </div>
+
+
+                            <div class="clearfix action_account_custommer text-center">
+                                <div class="action_bottom button dark">
+                                    <input class="btn btn-primary btn-signin" type="submit" value="Đăng nhập">
+                                </div>
+                                <div class="req_pass">
+                                    <a href="#" onclick="showRecoverPasswordForm();return false;">Quên mật khẩu?</a><br>
+                                    hoặc <a href="/account/register" title="Đăng ký">Đăng ký</a>
+                                </div>
+                            </div>
+
+                            <input id="3e79a948041047068aec7eef06784135" name="g-recaptcha-response" type="hidden"
+                                value="03AL8dmw9TMR_Hc1F-hyIv4YBdQHzax3AiLSyi_DhzLsoHKzZ_-_4AXMbAkmVJTuGYeDCj8mJjQ2C1wwKPsxX_LKaW7b-8MXsZsOq8rLNKl73ekZ8Ci8TcqJrvFZrF_zMKSJ8-kqZDc2-oT1OxTzrbeK6ZJLRjXeZt0BMRQUpVGvRA0YENcw8iuNRrLNkdCRZ65xuwnffVqLL4flcDZVQgUO2wGsQ7Rv58BISYexfRGRvUDV_8E7qzyVjMAOCnhcBM4XrXAAdxalQKGIZ4gVCW_SZaubgSc0XgxIReznRSzCfg8VpSOTWhldf4pEkSsvab7lLP6HBhhD0VCucipAOja2B6-aTysq3Sxe40lH_jVUAllu3gsN_zKBtMScs9G-4nUh0Pk0ZlS5_4XidCbYIlF-zOPtSDpdCTEWuBOxdPD1aqzkQaQAXDd45_dn-PoXVEJp9X14ol0wWhkJjeLjk8mGTBebrDcMphI_cYEKRWnZb5tOh8u8Za3Hr3IqrZC-uAFUH5mrH66iD8ynu6evL873eDhYTeP8n_Y1SghFwbnGK-lyKjMRCYBNc">
+                            <script
+                                src="https://www.google.com/recaptcha/api.js?render=6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-"></script>
+                            <script>grecaptcha.ready(function () { grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', { action: 'submit' }).then(function (token) { document.getElementById('3e79a948041047068aec7eef06784135').value = token; }); });</script>
+                        </form>
+                    </div>
+                    <div id="recover-password" style="display:none;" class="userbox">
+                        <div class="accounttype">
+                            <h2>Phục hồi mật khẩu</h2>
+                        </div>
+                        <form accept-charset="UTF-8" action="/account/recover" method="post">
+                            <input name="form_type" type="hidden" value="recover_customer_password">
+                            <input name="utf8" type="hidden" value="✓">
+
+
+                            <div class="clearfix large_form large_form-mr10">
+                                <label for="email" class="icon-field"><i class="icon-login icon-envelope "></i></label>
+                                <input type="email" value="" size="30" name="email" placeholder="Email"
+                                    id="recover-email" class="text">
+                            </div>
+                            <div class="clearfix large_form sitebox-recaptcha">
+                                This site is protected by reCAPTCHA and the Google
+                                <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy
+                                    Policy</a>
+                                and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms
+                                    of Service</a> apply.
+                            </div>
+                            <div class="clearfix action_account_custommer">
+                                <div class="action_bottom button dark">
+                                    <input class="btn" type="submit" value="Gửi">
+                                </div>
+                                <div class="req_pass">
+                                    <a href="#" onclick="hideRecoverPasswordForm();return false;">Hủy</a>
+                                </div>
+                            </div>
+
+                            <input id="df9214215f6a4ca29c1de27c4061951b" name="g-recaptcha-response" type="hidden"
+                                value="03AL8dmw8jHKb0hycOLhVe6HysmDWTfa3IFdFZWGwPkdKZyCTlR6dCKsUwuOJBT7aB7MLtg93_njNZ01VgOt0Cpssf_qBaML7YPFHniRSt-Qyd-hxJH7MADClapGtTFoCXi165ziYW-H0qv1stYP3OFxFIIKPNSjIsVtDeqJ01d6A9w3Vc_NDC2GROSyjJRX_ekplCji5P4AHSz3CJ4MdDt-7mb5x9ZGlYVBFd_FeF2TGs8jrJFNpZaJpOKfF_UXtXvUlQBk5a6S-mVEH4urqmTzr1OT8kDh_KvfnpOakyIyVQlXhaaL15mt72m2Og-skx4z0aErPAmqLRzfNwAT5WJ_JAO1aM1YsU4EV-u_9p-aNc-N_u9o6CLfB8x3fPkUG1RXNjkFBBG7CeFNZZxLBVvqYT1c_4L-EeKoKnEecNBvH_Z4mtMhcQL4WlpHfQKj9peTnDZn7SBcyyo4zQfuGBrs8xpJsNhGduSWPGnRSoyJOa097sbu0PEkSsVhKOQ322Uh1WPxLWjX8iKTxk5-mF0zB_5V49h1FKCnXV3FFr3VtgYpgcqrsyGjk">
+                            <script
+                                src="https://www.google.com/recaptcha/api.js?render=6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-"></script>
+                            <script>grecaptcha.ready(function () { grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', { action: 'submit' }).then(function (token) { document.getElementById('df9214215f6a4ca29c1de27c4061951b').value = token; }); });</script>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+@* <h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h2>Use a local account to log in.</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="checkbox mb-3">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to log in.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@
